@@ -10,7 +10,7 @@ const jwt = require("jsonwebtoken");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 function isUrl(str) {
   var pattern = new RegExp(
