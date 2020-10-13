@@ -1,0 +1,24 @@
+.container {
+  padding: 16px;
+  font-family: "Nunito", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  a {
+    img{
+      vertical-align: middle;
+      width: 56px;
+    }
+    span{
+      font-size: 56px;
+      font-weight: bold;
+      vertical-align: middle;
+    }
+    text-decoration: none;
+    color: black;
+    border-bottom: 3px solid purple;
+    padding: 4px 8px 2px;
+    border-bottom: 0;
+    transition: transform 200ms ease-in-out;
+  }
+}

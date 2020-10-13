@@ -1,0 +1,45 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  padding: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #30fcccf2;
+  flex-direction: column;
+  flex-grow: 1;
+  position: fixed;
+  .message {
+    position: relative;
+    font-family: "Nunito", sans-serif;
+    font-size: calc(32px + 2vw);
+    color: white;
+    background: black;
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 800px;
+    margin: 0 auto;
+    transform: translateY(24px);
+    p {
+      margin: 0;
+      padding: 0 16px;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: calc(100% - 1px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 16px solid transparent;
+      border-top-color: black;
+    }
+  }
+  .timer {
+    padding: 8px 16px;
+    border-radius: 32px;
+    background: black;
+    color: white;
+    margin-top: auto;
+    margin-top: 64px;
+  }
+}
