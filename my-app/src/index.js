@@ -8,7 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 import "./index.css";
 
-Axios.defaults.baseURL = "http://localhost:3000/api";
+Axios.defaults.baseURL = "/api";
 // Add a request interceptor
 Axios.interceptors.request.use(
   function (config) {
