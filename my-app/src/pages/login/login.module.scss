@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   background-color: #30fcccf2;
+  position: fixed;
   flex-direction: column;
   flex-grow: 1;
   form {
@@ -18,6 +19,25 @@
       padding: 8px 32px;
       font-size: 32px;
       display: block;
+    }
+    .error {
+      padding: 16px;
+      border-radius: 16px;
+      color: red;
+      margin-top: 16px;
+    }
+    .button {
+      background-color: #b433ff;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 32px;
+      align-items: center;
+      margin-left: 16px;
+      font-family: "Nunito", sans-serif;
+      font-size: 24px;
+      outline: none;
+      border: none;
+      cursor: pointer;
     }
   }
 }

@@ -1,27 +1,40 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import AuthRoute from "AuthRoute";
-import Home from "pages/home";
-import login from "pages/login";
-import "./App.css";
-import Message from "pages/message";
 import Navbar from "component/navbar";
+import "./App.scss";
+const Message = lazy(() => import("pages/message"));
+const login = lazy(() => import("pages/login"));
+const Home = lazy(() => import("pages/home"));
+
+function WaitingComponent(Component) {
+  return (props) => (
+    <Suspense
+      fallback={
+        <div className="loading">
+          <>Loading</>
+        </div>
+      }
+    >
+      <Component {...props} />
+    </Suspense>
+  );
+}
+
 
 function App() {
   return (
     <div className="App">
-      <ToastContainer />
       <Navbar />
       <Switch>
-        <Route exact path="/login" component={login} />
+        <Route exact path="/login" component={WaitingComponent(login)} />
         <Route
           exact
           path="/:id([0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12})"
-          component={Message}
+          component={WaitingComponent(Message)}
         />
-        <AuthRoute exact path="/" component={Home} />
-        {/* <AuthRoute component={Page404} /> */}
+        <AuthRoute exact path="/" component={WaitingComponent(Home)} />
       </Switch>
     </div>
   );

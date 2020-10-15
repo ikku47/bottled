@@ -1,0 +1,27 @@
+.container {
+  display: inline;
+  position: relative;
+  flex-shrink: 0;
+  .select {
+    appearance: none;
+    outline: none;
+    border: 0;
+    font-size: 42px;
+    font-family: "Nunito", sans-serif;
+    cursor: pointer;
+    background: transparent;
+    border-bottom: 3px solid #b433ff;
+    padding-right: 40px;
+  }
+  i {
+    color: #b433ff;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    pointer-events: none;
+  }
+}

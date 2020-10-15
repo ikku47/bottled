@@ -1,19 +1,14 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
+import Moment from "react-moment";
 import { useParams } from "react-router-dom";
 import Styles from "./message.module.scss";
 
-function isUrl(str) {
-  var pattern = new RegExp(
-    "^(https?:\\/\\/)?" + // protocol
-      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-      "(\\#[-a-z\\d_]*)?$",
-    "i"
-  ); // fragment locator
-  return !!pattern.test(str);
+function formatUrl(url) {
+  if (!/^(?:f|ht)tps?\:\/\//.test(url)) {
+    url = "http://" + url;
+  }
+  return url;
 }
 
 export default function Message() {
@@ -23,8 +18,8 @@ export default function Message() {
     Axios.get(`/${id}`)
       .then(function (response) {
         // handle success
-        if (isUrl(response.data.message)) {
-          window.location = response.data.message;
+        if (response.data.type === "link") {
+          window.location = formatUrl(response.data.message);
         } else setresult(response.data);
       })
       .catch(function (error) {
@@ -42,7 +37,12 @@ export default function Message() {
         <p className="">{result.message}</p>
       </div>
       <div className={Styles.timer}>
-        Message will disappear in <span data-time="3267">54m 27s</span>
+        Message will disappear &nbsp;
+        <span>
+          <Moment interval={1000} fromNow>
+            {result.expiry}
+          </Moment>
+        </span>
       </div>
     </div>
   );

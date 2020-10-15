@@ -12,21 +12,22 @@ function Login({ history }) {
     }
   }, []);
   const [data, setdata] = useState({});
+  const [error, seterror] = useState({});
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setdata({ ...data, [name]: value });
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    Axios.post("/login", data)
+    Axios.post("/auth", data)
       .then(function (response) {
         console.log(response);
+        seterror({});
         localStorage.setItem("token", response.data.token);
         history.push("/");
       })
       .catch(function (error) {
-        console.log(error.response.data);
-        toast.error(error.message);
+        seterror(error.response.data);
       });
   };
 
@@ -47,7 +48,15 @@ function Login({ history }) {
           value={data.password}
           onChange={handleChange}
         />
-        <input type="submit" value="login" onChange={handleSubmit} />
+        {error.password && (
+          <label className={Styles.error}>{error.password}</label>
+        )}
+        <input
+          className={Styles.button}
+          type="submit"
+          value="Sign In"
+          onChange={handleSubmit}
+        />
       </form>
     </div>
   );

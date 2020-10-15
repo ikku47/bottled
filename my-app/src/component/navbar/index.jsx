@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom/cjs/react-router-dom.min";
+import { isLoggedIn } from "actions/authentication";
 import Styles from "./navbar.module.scss";
 
 function Navbar({ history }) {
@@ -15,8 +16,12 @@ function Navbar({ history }) {
         </Link>
       </span>
       <span>
-        <Link to="/">Send your own message.</Link>
-        <button onClick={handleLogout}>Logout</button>
+        {isLoggedIn() && (
+          <>
+            <Link to="/">Send your own message.</Link>
+            <button onClick={handleLogout}>Logout</button>
+          </>
+        )}
       </span>
     </nav>
   );
