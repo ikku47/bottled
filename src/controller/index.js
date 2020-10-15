@@ -66,7 +66,7 @@ module.exports = {
       } else {
         password = bcrypt.hashSync(password.toString(), 10);
         db.get("users").push({ id: random, email, password }).write();
-        return res.json({ token: `Bearer ${generateToken({ id: user.id })}` });
+        return res.json({ token: `Bearer ${generateToken({ id: random })}` });
       }
     } else res.status(400).json({ err: "missing field" });
   },
